@@ -8,4 +8,4 @@ services:
       - ./backend/src:/usr/src/app/src
       - ./backend/db:/usr/src/app/db
     ports:
-      - 9000:9000
+      - 80:9000
