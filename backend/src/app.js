@@ -32,8 +32,22 @@ const listChats = async (ctx) => {
 
 const createChat = async (ctx) => {
   const params = ctx.request.body;
+  console.log(params);
+  data = {
+    acc_x: params.motion.accelerometer[0],
+    acc_y: params.motion.accelerometer[1],
+    acc_z: params.motion.accelerometer[2],
+    heading: params.motion.heading,
+    magnetometer_x: params.motion.magnetometer[0],
+    magnetometer_y: params.motion.magnetometer[1],
+    magnetometer_z: params.motion.magnetometer[2],
+    raw_heading: params.motion.raw_heading,
+    altitude: params.weather.altitude,
+    pressure: params.weather.pressure,
+    temperature: params.weather.temperature
+  }
 
-  const chat = await database.Chat.create({message: params.message});
+  const chat = await database.Chat.create(data);
 
   ctx.body = await chat.toJSON();
   ctx.status = 201;
